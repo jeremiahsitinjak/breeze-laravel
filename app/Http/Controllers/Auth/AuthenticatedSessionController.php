@@ -28,7 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $notifications = [
+            'message' => 'Login Berhasil',
+            'alert-type' => 'info'
+        ];
+
+        return redirect()->intended(route('dashboard', absolute: false))->with($notifications);
     }
 
     /**
